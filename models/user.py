@@ -15,6 +15,7 @@ class User(object):
 
     @classmethod
     def get_by_email(cls, email):
+        print(Database)
         data = Database.find_one("users", {"email": email})
         if data is not None:
             return cls(**data)
@@ -37,6 +38,7 @@ class User(object):
     @classmethod
     def register(cls, email, password):
         user = cls.get_by_email(email)
+        print(user)
         if user is None:
             # User doesn't exist, so we can create it
             new_user = cls(email, password)
